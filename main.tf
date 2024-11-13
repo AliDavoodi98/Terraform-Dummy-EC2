@@ -32,6 +32,7 @@ resource "aws_instance" "ec2" {
   instance_type = "t3.micro"
   subnet_id = aws_subnet.public_subnet.id
   vpc_security_group_ids = [aws_security_group.allow_ssh.id]
+  key_name = "macbook_air_pair"
 
   tags = {
     "Name" = "Main EC2"
