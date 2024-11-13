@@ -82,6 +82,6 @@ resource "aws_vpc_security_group_egress_rule" "https" {
   ip_protocol = "-1"
 }
 
-output "ec2_private_IP" {
-  value = aws_instance.ec2.private_ip
+output "ec2_public_IP" {
+  value = aws_instance.ec2.public_ip
 }
