@@ -48,6 +48,7 @@ resource "aws_subnet" "public_subnet" {
 resource "aws_instance" "ec2" {
   ami = data.aws_ami.ubuntu_ami.id
   instance_type = "t3.micro"
+  associate_public_ip_address = true 
   subnet_id = aws_subnet.public_subnet.id
   vpc_security_group_ids = [aws_security_group.allow_ssh.id]
   key_name = "macbook_air_pair"
@@ -73,6 +74,12 @@ resource "aws_vpc_security_group_ingress_rule" "ssh" {
   from_port = 22
   ip_protocol = "tcp"
   to_port = 22
+}
+
+resource "aws_vpc_security_group_egress_rule" "https" {
+  security_group_id = aws_security_group.allow_ssh.id
+  cidr_ipv4 = "0.0.0.0/0"
+  ip_protocol = "-1"
 }
 
 output "ec2_private_IP" {
