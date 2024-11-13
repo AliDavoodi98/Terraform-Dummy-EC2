@@ -13,6 +13,10 @@ data "aws_ami" "ubuntu_ami" {
   owners = [ "amazon" ]
 }
 
+data "http" "my_ip" {
+  url = "https://ifconfig.me/ip"
+}
+
 resource "aws_vpc" "main" {
   cidr_block = "10.0.0.0/16"
 }
